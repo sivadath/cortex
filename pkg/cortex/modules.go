@@ -176,6 +176,8 @@ func (t *Cortex) initServer(cfg *Config) error {
 		return err
 	}
 
+	t.server.HTTP.HandleFunc("/", t.index)
+
 	t.server.HTTP.HandleFunc("/config", func(w http.ResponseWriter, _ *http.Request) {
 		out, err := yaml.Marshal(cfg)
 		if err != nil {
